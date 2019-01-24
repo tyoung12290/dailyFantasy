@@ -28,7 +28,8 @@ angular.module('myApp').factory('lineupFactory', ['$http', function($http){
 				PF:2,
 				C:1
 				},
-			remSalary:60000
+			remSalary:60000,
+			points:0
 	};	
 	this.lineups=
 	this.getLineups = function(userId){
@@ -108,6 +109,7 @@ angular.module('myApp').factory('lineupFactory', ['$http', function($http){
 					Object.assign(player, activePlayer);
 					this.lineup.playerCount.total ++;
 					this.lineup.remSalary=this.lineup.remSalary - player.salary;
+					this.lineup.points=this.lineup.points + player.projectedScore;
 					break;
 				}
 			}
@@ -117,7 +119,6 @@ angular.module('myApp').factory('lineupFactory', ['$http', function($http){
 			for (let player of this.lineup.players){
 				if(activePlayer.id==player.id){
 					index = this.lineup.players.indexOf(player);
-					console.log(player)
 					this.lineup.players[index] = {
 							lineupSlot: this.lineup.players[index].lineupSlot ,
 							pos :this.lineup.players[index].pos
@@ -125,6 +126,7 @@ angular.module('myApp').factory('lineupFactory', ['$http', function($http){
 					this.lineup.playerCount[player.pos] --;
 					this.lineup.playerCount.total --;
 					this.lineup.remSalary=this.lineup.remSalary + player.salary;
+					this.lineup.points=this.lineup.points - player.projectedScore;
 					break;
 				}
 			}

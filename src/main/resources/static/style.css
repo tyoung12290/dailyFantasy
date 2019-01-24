@@ -31,13 +31,15 @@ div{
 	
 	
 	.lineup__empty-state{
-	 font-size: 16px;
+	 border:solid;
+	 border-color:grey;
+	 border-width:thin;
 	 display:none;
+	 font-size: 16px;
 	 cursor:pointer;
-	 height:100%;
-	 width:100%;
 	 align-items:center;
-	 position: relative
+	 position: relative;
+
 	}
 	
 	.lineup__player-container{
@@ -63,9 +65,37 @@ div{
 	 table-layout:fixed;
 	}
 	
+	.lineup__empty-state span{
+	display: table-cell;
+    text-align: left;
+	}
+	
+	.lineup__player-position {
+		width:10%;
+	}
+	
+	.lineup_player_points{
+		width:10%;
+	}
+	
+	.lineup_player_salary{
+		width:15%;
+	}
+	
+	.lineup__player-empty-text {
+		margin-left:10;
+	}
+	
+	.lineup_player_name {
+		margin-left:10;
+	}
+	
+	.player-action {
+		width:10%;
+	}
 	.lineup_player_info span{
 	display: table-cell;
-    text-align: center;
+    text-align: left;
 	}
 	
 	div.demo {
@@ -171,11 +201,44 @@ background-color:#7EDAD1;
 display:inline-blocks
 }
 
+
+.game_container{
+	width:80px;
+	border: 1px solid grey;
+	border-width:thin;
+    display: table-cell;
+}
+
+.game_team_all{
+	
+}
+.game_container div{
+	text-align: center
+}
+
+
 .lineup_salary_label{
 	display:inline-block;
 }
 .lineup_salary_rem{
 	display:inline-block;
+	float:right;
+}
+
+.lineup_points_label{
+	display:inline-block;
+}
+.lineup_points_counter{
+	display:inline-block;
 	float:right
 	;
+}
+thead {
+  display: table-header-group;
+  vertical-align: middle;
+  border-color: inherit;
+}
+
+body {
+	background-color:GhostWhite;
 }

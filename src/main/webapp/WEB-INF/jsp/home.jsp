@@ -11,12 +11,15 @@
 </jsp:include>
 <link href="<c:url value="/style.css" />" rel="stylesheet">
 <script src="<c:url value="/js/app.js" />"></script>
+<script src="<c:url value="/js/player/playerFactory.js" />"></script>
 <script src="<c:url value="/js/player/playerCtrl.js" />"></script>
 <script src="<c:url value="/js/ui/tabCtrl.js" />"></script>
 <script src="<c:url value="/js/lineup/lineupFactory.js" />"></script>
 <script src="<c:url value="/js/lineup/lineupCtrl.js" />"></script>
 <script src="<c:url value="/js/strategy/tagFactory.js" />"></script>
 <script src="<c:url value="/js/strategy/tagCtrl.js" />"></script>
+<script src="<c:url value="/js/game/gameFactory.js" />"></script>
+<script src="<c:url value="/js/game/gameCtrl.js" />"></script>
 
 </head>
 

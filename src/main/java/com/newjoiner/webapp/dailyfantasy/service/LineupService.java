@@ -2,16 +2,18 @@ package com.newjoiner.webapp.dailyfantasy.service;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
+
 import com.newjoiner.webapp.dailyfantasy.entity.Lineup; 
  
 public interface LineupService {
  
 	List<Lineup> findLineupsByUser(int userId); 
     
-    void saveLineup(Lineup lineup);
+	ResponseEntity<Lineup> saveLineup(Lineup lineup);   
     
-    void deleteLineup(int lineupId);   
+    ResponseEntity<Lineup> updateLineup(Lineup lineup);
     
-    void updateLineup(Lineup lineup);
+    ResponseEntity<String> deleteLineup(int lineupId);
      
 }

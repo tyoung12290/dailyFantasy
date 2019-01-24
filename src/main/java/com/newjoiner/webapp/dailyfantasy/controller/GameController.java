@@ -10,20 +10,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.newjoiner.webapp.dailyfantasy.entity.PlayerDetail;
-import com.newjoiner.webapp.dailyfantasy.service.PlayerDetailService;
+import com.newjoiner.webapp.dailyfantasy.entity.Game;
+import com.newjoiner.webapp.dailyfantasy.service.GameService;
 
 @Controller
-public class PlayerController {
+public class GameController {
 	
 	@Autowired
-	PlayerDetailService playerDetailService;
+	GameService gameService;
 	
 	
-	@RequestMapping(value="/players", method = RequestMethod.GET)
+	@RequestMapping(value="/game", method = RequestMethod.GET)
 	@ResponseBody
-	public List<PlayerDetail> getPlayers(@RequestParam Map<String,String> requestParams){
-		return playerDetailService.findAllPlayers(requestParams);
+	public List<Game> getGames(@RequestParam Map<String,String> requestParams){
+		return gameService.findGames(requestParams);
 	}
 	
 	

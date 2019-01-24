@@ -1,21 +1,25 @@
-angular.module('myApp').controller('playerCtrl', ['$http', 'tagFactory', 'lineupFactory', function($http, tagFactory, lineupFactory){
+angular.module('myApp').controller('playerCtrl', ['$http', 'tagFactory', 'lineupFactory','playerFactory', function($http, tagFactory, lineupFactory,playerFactory){
 		let vm = this;
 		vm.player={};
 		vm.allPlayers=[];
 		vm.lineup=lineupFactory.lineup;
-		
-		vm.search={pos:'',
-					fuzzy:''};
+		vm.search=playerFactory.search;
 		vm.loadPlayers= function(){
-			$http.get("/players").then(function(successData){
+			let date = new Date();
+			let dateString = new Date(date.getTime() - (date.getTimezoneOffset() * 60000 ))
+			                    .toISOString()
+			                    .split("T")[0];
+			$http.get("/players",{params: {date:dateString}}).then(function(successData){
 				vm.allPlayers=successData.data;
+				console.log(successData.data)
 				for(let playerDetail of vm.allPlayers){
-					playerDetail.playerDtlId=playerDetail.id
-					playerDetail.id=playerDetail.player.id;
+					
+					playerDetail.playerDtlId=playerDetail.player.id
+					playerDetail.id=playerDetail.id;
 					playerDetail.firstName=playerDetail.player.firstName;
 					playerDetail.lastName=playerDetail.player.lastName;
 					playerDetail.pos=playerDetail.player.pos;
-					playerDetail.team=playerDetail.player.team;
+					playerDetail.team=playerDetail.team.abbr;
 					delete playerDetail.player;
 				}
 				}, function(error){
@@ -24,10 +28,10 @@ angular.module('myApp').controller('playerCtrl', ['$http', 'tagFactory', 'lineup
 		}
 		vm.getVal = function(val){
 			if(val.currentTarget.value==="All"){
-				vm.search.pos = '';
+				playerFactory.search.pos = '';
 			}
 			else{
-				vm.search.pos = val.currentTarget.value;
+				playerFactory.search.pos = val.currentTarget.value;
 			}
 			
 		}

@@ -25,7 +25,8 @@ public class PlayerDetailServiceImpl implements PlayerDetailService {
     }
 
     @Override public List<PlayerDetail> findAllPlayers(Map<String, ?> requestParams) {
-    	String url = "http://localhost:8080/SpringMVCCustom/players";
+    	String url = "http://localhost:8080/SpringMVCCustom/players?date=";
+    	url +=requestParams.get("date");
     	RestTemplate restTemplate = new RestTemplate();
     	ParameterizedTypeReference<List<PlayerDetail>> responseType = new ParameterizedTypeReference<List<PlayerDetail>>() {};
     	HttpHeaders requestHeaders = new HttpHeaders();

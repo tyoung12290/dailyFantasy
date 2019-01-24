@@ -58,16 +58,16 @@ angular.module('myApp').controller('lineupCtrl', ['$http', 'lineupFactory','tagF
 		}
 		
 		vm.updateLineup = function(lineup){
+			console.log(lineup)
 			persistLineup={};
 			persistPlayers=[];
 			for (let player of lineup.players){
 				let persistPlayerDetails={};
-				persistPlayerDetails.id=player.playerDtlId;
+				persistPlayerDetails.id=player.id;
 				persistPlayerDetails.date=player.date;
-				persistPlayerDetails.score=player.score;
 				persistPlayerDetails.salary=player.salary;
 				let persistPlayer={};
-				persistPlayer.id=player.id
+				persistPlayer.id=player.playerDtlId
 				persistPlayerDetails.player=persistPlayer
 				persistPlayers.push(persistPlayerDetails)
 			}

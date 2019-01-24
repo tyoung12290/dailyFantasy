@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,18 +15,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.newjoiner.webapp.dailyfantasy.entity.Lineup;
 import com.newjoiner.webapp.dailyfantasy.service.LineupService;
-import com.newjoiner.webapp.dailyfantasy.service.PlayerService;
 
 @Controller
 public class LineupController {
 	
-	@Autowired
-	//TODO add access modifier
-	PlayerService playerService;
 	
 	@Autowired
-	//TODO add access modifier
-	LineupService lineupService;
+	private LineupService lineupService;
 
 	@RequestMapping(value="/lineup", method=RequestMethod.GET)
 	@ResponseBody
@@ -37,23 +32,22 @@ public class LineupController {
 	
 	@RequestMapping(value="/lineup", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
-	public String saveLineup(@RequestBody Lineup lineup) {
-		System.out.println(lineup);
-		lineupService.saveLineup(lineup);
-		return  "{\"success\":200}";
-	}
-	
-	@RequestMapping(value="/lineup/{lineupId}", method = RequestMethod.DELETE)
-	@ResponseBody
-	public String deleteLineup(@PathVariable int lineupId) {
-		lineupService.deleteLineup(lineupId);
-		return  "{\"success\":200}";
+	public ResponseEntity<Lineup> saveLineup(@RequestBody Lineup lineup) {
+		ResponseEntity<Lineup> lineupResponse = lineupService.saveLineup(lineup);
+		return  lineupResponse;
 	}
 	
 	@RequestMapping(value="/lineup", method = RequestMethod.PUT)
 	@ResponseBody
-	public String updateLineup(@RequestBody Lineup lineup) {
-		lineupService.updateLineup(lineup);
-		return  "{\"success\":200}";
+	public ResponseEntity<Lineup> updateLineup(@RequestBody Lineup lineup) {
+		ResponseEntity<Lineup> lineupResponse = lineupService.updateLineup(lineup);
+		return  lineupResponse;
+	}
+	
+	@RequestMapping(value="/lineup/{lineupId}", method = RequestMethod.DELETE)
+	@ResponseBody
+	public ResponseEntity<String> deleteLineup(@PathVariable int lineupId) {
+		ResponseEntity<String> lineupResponse= lineupService.deleteLineup(lineupId);
+		return  lineupResponse;
 	}
 }

@@ -3,8 +3,6 @@ package com.newjoiner.webapp.dailyfantasy.entity;
 import java.sql.Date;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 
 public class PlayerDetail {
 
@@ -14,11 +12,15 @@ public class PlayerDetail {
 	
 	private Player player;
 	
+	private Team team;
+	
 	private List<Lineup> lineups;
 
-	private int salary;
+	private Integer salary;
 	
-	private int score;
+	private Integer actualScore;
+	
+	private Integer projectedScore;
 
 	private Date date;
 
@@ -37,24 +39,43 @@ public class PlayerDetail {
 	public void setPlayer(Player player) {
 		this.player = player;
 	}
+	
+	
 
-	public int getSalary() {
+	public Team getTeam() {
+		return team;
+	}
+
+	public void setTeam(Team team) {
+		this.team = team;
+	}
+
+	public Integer getSalary() {
 		return salary;
 	}
 
-	public void setSalary(int salary) {
+	public void setSalary(Integer salary) {
 		this.salary = salary;
 	}
 
-	public int getScore() {
-		return score;
+	
+	
+
+	public Integer getActualScore() {
+		return actualScore;
 	}
 
-	public void setScore(int score) {
-		this.score = score;
+	public void setActualScore(Integer actualScore) {
+		this.actualScore = actualScore;
 	}
-	
-	
+
+	public Integer getProjectedScore() {
+		return projectedScore;
+	}
+
+	public void setProjectedScore(Integer projectedScore) {
+		this.projectedScore = projectedScore;
+	}
 
 	public Date getDate() {
 		return date;
@@ -81,7 +102,7 @@ public class PlayerDetail {
 		result = prime * result + ((date == null) ? 0 : date.hashCode());
 		result = prime * result + id;
 		result = prime * result + salary;
-		result = prime * result + score;
+		result = prime * result + actualScore;
 		return result;
 	}
 
@@ -103,7 +124,7 @@ public class PlayerDetail {
 			return false;
 		if (salary != other.salary)
 			return false;
-		if (score != other.score)
+		if (actualScore != other.actualScore)
 			return false;
 		return true;
 	}

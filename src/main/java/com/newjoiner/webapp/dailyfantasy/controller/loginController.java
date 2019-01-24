@@ -14,21 +14,17 @@ import com.newjoiner.webapp.dailyfantasy.service.LoginService;
 @Controller
 public class loginController {
 
-	
-	//TODO add access modifier
 	@Autowired
 	LoginService loginService;
 
 	
 	@RequestMapping(value="/", method = RequestMethod.GET)
 	public String loginScreen()  {
-		System.out.println("he;;p");
 		return "login";
 	}
 	
 	@RequestMapping(value="/home", method = RequestMethod.POST)
 	public String saveLineup(@ModelAttribute("user") User user, Model viewModel) {
-	System.out.println(user);
 	User userObj = loginService.findByUser(user);
 	viewModel.addAttribute("userId", userObj.getId());
 		return "home";
